@@ -1,0 +1,38 @@
+
+Q: Is there a way to create a stand-alone VPython application?
+
+A: From Andrei Makhanov, for Windows:
+
+1) To compile a vPython program to exe, you need to download py2exe and install it.
+    There exists a Python 2.7.3 version.
+
+2) py2exe require msvcp90.dll to be installed, which is a Microsoft distribution.
+    Find the .dll online and put it into C:\Python27\DLLs.
+
+3) Edit C:\\Python27\Lib\site-packages\visual_common\materials.py with VIDLE.
+
+4) In materials.py, find texturepath. Find where it says "visual\\" and change it to "".
+
+5) Create a file called setup.py containing the following (change the name "stars.py" to your py file):
+
+from distutils.core import setup
+import py2exe
+
+setup(
+console = ["stars.py"],
+)
+
+Alternatively, you can use the file setup.py, in which case
+you don't need to perform step 8 below. You will need to change 
+the "script" option to replace the name "stars.py" with the name of your own file.
+
+6) Place the files setup.py and stars.py (or your file name) in a folder that's easy to get to.
+
+7) In a command prompt, go to this folder and execute the following code:
+    C:\Python27\python setup.py py2exe
+
+8) From C:\\Python27\Lib\site-packages\visual_common copy the following files to your folder:
+    turbulence3.tga, wood.tga, BlueMarble.tga, brickbump.tga, earth.tga, and random.tga.
+
+9) The program should now execute and work.
+
