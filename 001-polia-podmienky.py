@@ -30,3 +30,9 @@ l.remove('a')
 for x in l:
   print x
 
+
+pole1 = pole2 = [1,2,3,4,5,6,7]
+pole1[0]=9; pole1[1]=9;
+print pole1
+print pole2
+
