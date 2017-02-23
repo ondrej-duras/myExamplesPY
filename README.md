@@ -1,11 +1,11 @@
 # Priklady Py
 
-toto su iba priklady. Somariny, ktore planujem pachat so
-synatorom, pripadne s dcerou, aby sa naucili skrotit
+toto su iba priklady. Planujem to prebehnut so
+synatorom, pripadne s dcerou, aby sa naucili ako umravnit 
 svoj vlastny pocitac.
 
 Priklady hodno vyskusat od prikladu 
-prveho ( 000 ) az po ten posledny v ciselnom
+prveho ( 001 ) az po ten posledny v ciselnom
 poradi v akom su uvedene.
 
 Ako dokumentacia su postacujuce nasledovne:
@@ -15,4 +15,6 @@ Ako dokumentacia su postacujuce nasledovne:
  - https://pypi.org/
  - http://stackoverflow.com/
 
+Vsetky priklady su skusane na 
+verzii 2.7.13 .
 
