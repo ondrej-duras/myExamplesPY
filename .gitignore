@@ -5,6 +5,7 @@
 *.gz
 
 /wiki/*
+/_wiki/*
 # Vagrant stuff
 acceptance_config.yml
 boxes/*
