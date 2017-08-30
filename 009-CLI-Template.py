@@ -40,14 +40,17 @@ import sys
 import os
 import re
 
-# Unix ANSI TTY Escape prefixes with Windows as well
-if sys.platform == "win32":   
-  import colorama
-  colorama.init()
-
 MODE_DEBUG = "" # Filter of troubleshooting messages
 MODE_COLOR = 2  # TTY colors 0=OFF 1=ON 2=TBD
 TEST_ECHO  = [] # message to be displayed on STDOUT
+
+# Unix ANSI TTY Escape prefixes with Windows as well
+if sys.platform == "win32":   
+  try:
+    import colorama
+    colorama.init()
+  except:
+    MODE_COLOR = 0
 
 ####################################################################### }}} 1
 ## INTERFACE ########################################################## {{{ 1
