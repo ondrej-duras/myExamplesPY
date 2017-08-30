@@ -6,7 +6,10 @@ path=None
 module="colorama"
 
 try:     # skus nieco co mozno nedopadne dobre
-  import colorama as xmodule
+  # takto to funguje tiez
+  #import colorama as xmodule
+  #ale takto do 'module' dame premennu
+  xmodule = __import__(module)
 except:  # tot sprav ak to dobre nedopadlo 
   ver = "missing"
 else:    # alebo toto, ak to dobre dopadlo
