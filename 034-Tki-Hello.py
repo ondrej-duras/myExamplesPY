@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 # http://www.programcreek.com/python/index/module/list # zoznam najuspesnejsich balickov Py
 # http://www.python-course.eu/python_tkinter.php       # kurz ku Tk (sucast instalacky  Py)
 # http://www.python-course.eu/tkinter_dialogs.php      # specialne ku dialogom

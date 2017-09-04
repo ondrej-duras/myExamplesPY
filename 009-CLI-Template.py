@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 # hello.py - The first attempt to write something in Python
 # 20170126, Ing. Ondrej DURAS (dury)
 # ~/prog/pyTWIST/hello.py

@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 # http://effbot.org/tkinterbook/listbox.htm
 
 from Tkinter import *

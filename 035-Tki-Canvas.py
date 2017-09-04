@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 # http://www.python-course.eu/python_tkinter.php  # manual ku Tk balicku, ktory je sucastou installacky Py
 # http://www.python-course.eu/tkinter_canvas.php  # special ku Canvas/Platnu na kreslenie
 

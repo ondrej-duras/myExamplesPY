@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 
 # https://pypi.python.org/pypi/Skype4Py/
 # set https_proxy=http://proxy.bbn.hp.com:8080

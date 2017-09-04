@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # --- zaciatok programu ----
 from visual import *
 sphere(pos = vector(-5,0,0), radius = 0.5, material = materials.wood)

@@ -1,3 +1,4 @@
+# --- Win32 only ! ---
 
 import colorama   # unixove farbicky v okne
 import msvcrt     # praca s Windows oknom Console

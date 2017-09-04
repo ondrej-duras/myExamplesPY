@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 # http://www.python-course.eu/tkinter_labels.php
 
 from Tkinter import *

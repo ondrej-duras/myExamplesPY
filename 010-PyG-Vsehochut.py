@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 
 # https://inventwithpython.com/pygameHelloWorld.py
 import pygame, sys

@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 from visual import *
 checkerboard = ( (0,1,0,1),

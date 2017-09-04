@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 
 # none import necesary
 fh=open("DATA.txt","w")

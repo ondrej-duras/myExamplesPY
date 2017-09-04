@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 # Polygons - Old ScreenSaver
 # 20170209, Ing. Ondrej DURAS (dury)
 

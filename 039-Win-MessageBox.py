@@ -1,3 +1,4 @@
+# --- Win32 only ! ---
 
 from ctypes import *
 

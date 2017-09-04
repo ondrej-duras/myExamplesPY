@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 
 x = 7
 y = 7

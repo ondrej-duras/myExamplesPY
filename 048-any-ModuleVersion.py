@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 #
 # 048-ANY-MODULEVERSION.PY - PYthon Modules Info Utility
 # 20170831, Ing. Ondrej DURAS, OSK

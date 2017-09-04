@@ -1,4 +1,4 @@
-
+#!/usr/bin/env
 
 # from random import *
 # from random import randint ... :-)

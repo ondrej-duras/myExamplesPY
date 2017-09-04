@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/usr/bin/env python
 
 # Prikaz na viacero riadkov
 for i in range(1,10,1):
