@@ -36,5 +36,8 @@ def on_mouse_press(x, y, button, modifiers):
 def on_mouse_motion(x,y,dx,dy):
   print "myska pohyb: "+str(x)+":"+str(y)+":"+str(dx)+":"+str(dy)
 
+# zapne vypis udalosti okna do konzoly
+window.push_handlers(pyglet.window.event.WindowEventLogger())
+# volanie standartnej slucky aplikacie
 pyglet.app.run()
 
