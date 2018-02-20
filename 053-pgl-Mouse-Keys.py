@@ -28,7 +28,7 @@ def on_key_press(symbol,modifiers):
      print "Stlaceny ENTER"
 
 @window.event
-def on_mouse_press(x, y, button, modifiers):
+def on_mouse_release(x, y, button, modifiers):
   #if button == mouse.LEFT:
   print "myska tlacidlo: "+str(x)+":"+str(y)+" button "+str(button)
 
