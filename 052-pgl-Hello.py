@@ -1,5 +1,14 @@
 #!/usr/bin/env python
 
+# bud takto
+# pip install .\pyglet-pyglet-4e4fcdf65724.zip
+# alebo takto
+# pip install pyglet
+# ma to iba 5.5MB a ziadne zavislosti mimo OS.
+# rozhranie v mnohom identicke s OpenGL
+# dobra praca s mediami : jpg, mp3 ...
+
+
 import pyglet
 
 window = pyglet.window.Window()
