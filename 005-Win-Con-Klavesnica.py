@@ -1,11 +1,19 @@
+#!/usr/bin/env python2
 # --- Win32 only ! ---
+
+import sys        # systemove veci - teraz vlastne len sys.exit
+if not sys.platform == 'win32':
+  print "Runs with the Windows only !"
+  exit()
 
 import colorama   # unixove farbicky v okne
 import msvcrt     # praca s Windows oknom Console
 import time       # sleep - cakanie aby sa program nezblaznil
-import sys        # systemove veci - teraz vlastne len sys.exit
+
 
 colorama.init()
+print "\n\n\n\n\033[1;31mProgram mozno ukoncit stlacenim klavesy \033[1;33m'Q'\033[m"
+
 
 ch = "x"
 while True:

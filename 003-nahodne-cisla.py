@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env python2
 
 # from random import *
 # from random import randint ... :-)

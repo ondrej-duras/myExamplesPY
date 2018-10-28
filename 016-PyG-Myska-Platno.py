@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 # http://www.pygame.org/docs/ref/event.html
 '''

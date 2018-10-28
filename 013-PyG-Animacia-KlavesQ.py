@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 
 import sys, pygame
 from pygame.locals import *
@@ -19,6 +19,7 @@ while 1:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()
         if (event.type == pygame.KEYDOWN ) and ( event.key == 113): sys.exit()
+        # key 113 - is a 'q' key
 
     ballrect = ballrect.move(speed)
     if ballrect.left < 0 or ballrect.right > width:
