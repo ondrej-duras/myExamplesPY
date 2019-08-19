@@ -1,15 +1,15 @@
 #!/usr/bin/env python2
 # hello.py - The first attempt to write something in Python
 # 20170126, Ing. Ondrej DURAS (dury)
-# ~/prog/Socket-UDP-TCP/002-UDP-Hello.py
+# ~/prog/Socket-UDP-TCP/074-UDP-Hello.py
 
 
 ## MANUAL ############################################################# {{{ 1
 
-VERSION = 2019.030102
+VERSION = 2019.030301
 MANUAL  = """
 NAME: UDP Hello Template
-FILE: 002-UDP-Hello.py
+FILE: 074-UDP-Hello.py
 FILE: udp-hello
 
 DESCRIPTION:
@@ -18,14 +18,14 @@ DESCRIPTION:
 
 
 USAGE:
-  002-UDP-Hello.py --recv
-  002-UDP-Hello.py --send 10
-  002-UDP-Hello.py --send 10 --stop
-  002-UDP-Hello.py --send 10 --stop --addr 1.1.1.1 -port 1188
-  002-UDP-Hello.py --reply
-  002-UDP-Hello.py --reply -bind 1.1.1.4 -port 1188
-  002-UDP-Hello.py --echo 10 --stop
-  002-UDP-Hello.py --proxy 1188 -addr 1.1.1.7 -port 1177
+  074-UDP-Hello.py --recv
+  074-UDP-Hello.py --send 10
+  074-UDP-Hello.py --send 10 --stop
+  074-UDP-Hello.py --send 10 --stop --addr 1.1.1.1 -port 1188
+  074-UDP-Hello.py --reply
+  074-UDP-Hello.py --reply -bind 1.1.1.4 -port 1188
+  074-UDP-Hello.py --echo 10 --stop
+  074-UDP-Hello.py --proxy 1188 -addr 1.1.1.7 -port 1177
 
 
 PARAMETERS:
@@ -38,6 +38,10 @@ PARAMETERS:
                         packets till "stop" message is received
   --echo 10           - acting as a client, sending 10 packets
                         After each packet the script waits for reply (2sec).
+  --proxy 1177        - acting as a bidirectional forwarder
+                        Mandatory argument is a port on which it listens
+  --fwd 1177          - acting as an uniderectional forwarder.
+                        Mandatory argument is a port on which it listens
   --send 10           - acting as a client, sending 10 echo packets
   --mesg "My message" - acting as a client, sending message
   --stop              - sends an "stop" message to server
@@ -109,9 +113,9 @@ TEST_COLOR = """
 def color(msg):
   global MODE_COLOR
   if not MODE_COLOR: return msg
-  msg = re.sub(r"^(#:.*)$", "\033[0;36m\\1\033[m",msg,re.M)     # debug
+  msg = re.sub(r"^(#:.*)$", "\033[0;33m\\1\033[m",msg,re.M)     # debug
   msg = re.sub(r"^(#-.*)$", "\033[1;31m\\1\033[m",msg,re.M)     # warning/error
-  msg = re.sub(r"^(#\+.*)$","\033[1;32m\\1\033[m",msg,re.M)     # success
+  msg = re.sub(r"^(#\+.*)$","\033[0;36m\\1\033[m",msg,re.M)     # success
   msg = re.sub(r"^(#\&.*)$","\033[1;33m\\1\033[m",msg,re.M)     # status
   msg = re.sub(r"^(#_.*)$", "\033[0;36m\\1\033[m",msg,re.M)     # notice
   msg = re.sub("^(#\>.*)$", "\033[1;36m\\1\033[m",msg,re.M)     # interaction
@@ -188,6 +192,7 @@ def interface():
 
     if re.match("-+reply", argx):  UDP_MODE="reply"; continue  # --reply
     if re.match("-+proxy", argx):  UDP_MODE="proxy"; UDP_PROXY=int(sys.argv[idx+1]); idx=idx+1;  continue  # --reply
+    if re.match("-+fwd",   argx):  UDP_MODE="fwd";   UDP_PROXY=int(sys.argv[idx+1]); idx=idx+1;  continue  # --reply
     if re.match("-+stop",  argx):  UDP_STOP=True;    continue  # --stop
     if re.match("-+echo",  argx):  UDP_MODE="echo";  UDP_COUNT=int(sys.argv[idx+1]); idx=idx+1; continue  # --echo <number>
     if re.match("-+send",  argx):  UDP_MODE="send";  UDP_COUNT=int(sys.argv[idx+1]); idx=idx+1; continue  # --send <number>
@@ -227,7 +232,7 @@ def mySend():
   sock.close()
 
 ####################################################################### }}} 1
-## OVER ############################################################### {{{ 1
+## STOP ############################################################### {{{ 1
 
 def myStop():
   global UDP_SENT,UDP_ADDR,UDP_PORT
@@ -275,7 +280,7 @@ def myReply():
 
 
 ####################################################################### }}} 1
-## PROXY ############################################################## {{{ 1
+## PROXY - bidir forward ############################################## {{{ 1
 
 def myProxy():
   global UDP_RECV,UDP_SENT,UDP_ADDR,UDP_PORT,UDP_BIND,UDP_PROXY
@@ -299,7 +304,37 @@ def myProxy():
           % (data2,sender1[0],sender1[1],sender2[0],sender2[1],UDP_RECV))
   print color("#+ UDP message 'stop' received and forwarded")
   print color("#+ UDP bidirectionaly forwarded %u packets" % (UDP_RECV))
-  sock.close()
+  send.close()
+  recv.close()
+
+
+####################################################################### }}} 1
+## FWD - unidir forward ############################################### {{{ 1
+
+def myForward():
+  global UDP_RECV,UDP_SENT,UDP_ADDR,UDP_PORT,UDP_BIND,UDP_PROXY
+  send = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+  recv = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+  send.settimeout(2)
+  recv.bind((UDP_BIND,UDP_PROXY))
+  print color("#+ UDP Listening on  %s:%u" % (UDP_BIND,UDP_PROXY))
+  print color("#+ UDP Forwarding to %s:%u" % (UDP_ADDR,UDP_PORT))
+  print color("#+ UDP Starting to fotward ...")
+  NEXT = True
+  while NEXT:
+    data1, sender1 = recv.recvfrom(1024)
+    send.sendto(data1,(UDP_ADDR,UDP_PORT))
+    UDP_SENT += 1
+    #data2, sender2 = send.recvfrom(1024)
+    UDP_RECV += 1
+    #recv.sendto(data2,sender1)
+    if re.match("^stop .*",data1) : NEXT=False
+    print color("<< UDP forwarded \"%s\" from %s:%u as seq %u" 
+          % (data1,sender1[0],sender1[1],UDP_RECV))
+  print color("#+ UDP message 'stop' received and forwarded")
+  print color("#+ UDP unidirectionaly forwarded %u packets" % (UDP_RECV))
+  send.close()
+  recv.close()
 
 
 ####################################################################### }}} 1
@@ -348,6 +383,7 @@ def main():
   if UDP_MODE == "recv"  : myRecv()
   if UDP_MODE == "reply" : myReply()
   if UDP_MODE == "proxy" : myProxy()
+  if UDP_MODE == "fwd"   : myForward()
   if UDP_MODE == "echo"  : myEcho()
   if UDP_STOP            : myStop()  # musi byt na konci :-)
   done()
