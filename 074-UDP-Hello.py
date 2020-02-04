@@ -7,7 +7,7 @@
 
 ## MANUAL ############################################################# {{{ 1
 
-VERSION = 2020.020301
+VERSION = 2020.020302
 MANUAL  = """
 NAME: UDP Hello Template
 FILE: 002-UDP-Hello.py
@@ -22,11 +22,11 @@ USAGE:
   002-UDP-Hello.py --recv
   002-UDP-Hello.py --send 10
   002-UDP-Hello.py --send 10 --stop
-  002-UDP-Hello.py --send 10 --stop --addr 1.1.1.1 -port 1188
+  002-UDP-Hello.py --send 10 --stop --addr 1.1.1.1 -port 1155
   002-UDP-Hello.py --reply
   002-UDP-Hello.py --reply -bind 1.1.1.4 -port 1188
   002-UDP-Hello.py --echo 10 --stop
-  002-UDP-Hello.py --proxy 1188 -addr 1.1.1.7 -port 1177
+  002-UDP-Hello.py --proxy 1155 -addr 1.1.1.7 -port 1177
 
 
 PARAMETERS:
@@ -42,6 +42,8 @@ PARAMETERS:
   --send 10           - acting as a client, sending 10 echo packets
   --mesg "My message" - acting as a client, sending message
   --stop              - sends an "stop" message to server
+  --proxy 1155        - is listening on 1155, while forwarding to 1177 (see example)
+                        It's acting as a proxy/forwarder in tested path.
   
 
 SEE ALSO:
