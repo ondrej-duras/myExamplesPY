@@ -13,10 +13,15 @@ tty = serial.Serial(
    baudrate=9600,       # line setup for cisco,juniper,f5 and other hungry pigs
    bytesize = serial.EIGHTBITS,
    parity = serial.PARITY_NONE,
-   stopbits = serial.STOPBITS_ONE
+   stopbits = serial.STOPBITS_ONE,
+   xonxoff = False, 
+   rtscts = False,
+   dsrdtr = False,
+   timeout = 2
 )
 tty.close() # that closes previously opened sessions ... :-)
 tty.open()  # opens new session
+tty.set_buffer_size(64000)  #  
 if not tty.isOpen(): exit() # checks whether the session has been opened
 
 print dir(tty) # ...lebo medved :-)
