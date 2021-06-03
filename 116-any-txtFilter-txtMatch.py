@@ -20,6 +20,11 @@ def txtFilter(pat,txt,empty=1):
     out += line+"\n"
   return out
 
+def txtCount(txt):
+  if txt == None: return 0
+  if txt == "": return 0
+  return len(txt.splitlines())
+
 
 text="""
 ahoj Janci
@@ -32,8 +37,11 @@ nazdar Janci
 if __name__ == "__main__":
   print "txtMatch"
   print txtMatch(".*Janci",text)
+  print txtCount(txtMatch(".*Janci",text))
   print "\ntxtFilter"
   print txtFilter(".*Janci",text)
+  print txtCount(txtFilter(".*Janci",text))
+  print txtCount(text)
 
 # --- end ---
 
