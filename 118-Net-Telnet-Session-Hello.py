@@ -20,7 +20,7 @@ except:
   pass
 
 if not USER:
-  if sys.version_info.major == 2:
+  if sys.version_info[0] == 2:
     USER = raw_input("Login: ")
   else:
     USER = input("Login: ")
