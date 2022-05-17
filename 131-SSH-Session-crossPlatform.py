@@ -23,7 +23,7 @@ import getpass
 
 
 try:
-  import pwa
+  from pwa import *
 except:
   def pwaLogin(cred):
     return raw_input("Login("+cred+")> ")
@@ -39,9 +39,9 @@ def sshExec(host,cred,action):
 
   # Opening and authenticating the SSH session with the WLC
   if sys.platform == "win32":
-    command="plink.exe -no-antispoof -batch -ssh -l %s -pw %s %s" % (user,pasw,host)
+    command="plink.exe -no-antispoof -batch -ssh -l %s -pw \"%s\" %s" % (user,pasw,host)
   else:
-    command="sshpass -p %s ssh -tt -o StrictHostKeyChecking=no -l %s %s" % (pasw,user,host)
+    command="sshpass -p \"%s\" ssh -tt -o StrictHostKeyChecking=no -l %s %s" % (pasw,user,host)
 
   stdin,stdout = os.popen4(command)
   stdin.write("terminal length 0\r")
@@ -87,7 +87,7 @@ def wlcExec(host,cred,action):
 
 
 if __name__ == "__main__":
-  print("1 - IOS/IOS-XE/NX-OS")
+  print("1 - IOS/IOS-XE/IOS-XR/NX-OS")
   print("2 - Air-OS")
   opt  = raw_input("1/2?>> ").strip()
   host = raw_input("host>> ").strip()
